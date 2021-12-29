@@ -43,8 +43,11 @@ function addSelect(file) {
     fileList.push({
       name: file.name,
       bef: reader.result,
-      aft: text
+      aft: text,
+      tab: text[0]
     });
+    // 戦闘削除してプレビューに表示
+    text.shift();
 
     $("#pre1").html(fileList[fileList.length - 1].bef);
     $("#pre2").html(fileList[fileList.length - 1].aft);
@@ -52,7 +55,7 @@ function addSelect(file) {
 }
 // ココフォリア→どどんとふ形式へ
 function convert(htmlText) {
-
+  var tabname = true;
   var text = htmlText.replace(/\r\n|\r/g, "\n");
   var lines = text.split('\n');
   var outArray = new Array();
@@ -72,6 +75,9 @@ function convert(htmlText) {
     // <p>タグから色取得
     if (lines[i].startsWith('<p style=')) {
       var color = lines[i].substring(17, 23);
+      if ($("#defcolor").prop("checked") && color == '888888') {
+        color = "000000";
+      }
       addLine = '<font color="#' + color + '">';
     }
 
@@ -89,11 +95,19 @@ function convert(htmlText) {
         }
       } else {
         // <span>~</span>の場合は名前orタブ名
+
+        // タブ名
         if (lines[i].endsWith('</span>')) {
           if ($("#tab").prop("checked")) {
             var test = lines[i].slice(6);
             test = test.slice(0, -7);
             addLine = addLine + test;
+          }
+          if (tabname) {
+            var test = lines[i].slice(6);
+            test = test.slice(0, -7);
+            outArray.unshift(test);
+            tabname = false;
           }
         } else {
           var test = lines[i].slice(6);
@@ -114,13 +128,28 @@ function convert(htmlText) {
 $(document).ready(function() {
 
   $("#fileList").change(function() {
-    // if ($(this).val() != $('#fileList option:selected').val()) {
-      var fileName = $(this).val();
-      var selectFile = fileList.find(element => element.name == fileName);
+    var fileName = $(this).val();
+    var selectFile = fileList.find(element => element.name == fileName);
 
-      $("#pre1").html(selectFile.bef);
-      $("#pre2").html(selectFile.aft);
-    // }
+    $("#pre1").html(selectFile.bef);
+    $("#pre2").html(selectFile.aft);
+  });
+
+
+  $("#downLoad").click(function() {
+    for (var i = 0; i < fileList.length; i++) {
+
+      var content = "<?xml version='1.0' encoding='UTF-8'?>\n<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>\n<html xmlns='http://www.w3.org/1999/xhtml' lang='ja'>\n  <head>\n<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />\n<title>チャットログ" + fileList[i].tab + "</title>\n</head>\n";
+
+      for (var j = 1; j < fileList[i].aft.length; j++) {
+        content = content + fileList[i].aft[j] + "\n";
+      }
+      content = content + "</body>";
+      var link = document.createElement('a');
+      link.href = window.URL.createObjectURL(new Blob([content]));
+      link.download = fileList[i].name;
+      link.click();
+    }
   });
 
 });
