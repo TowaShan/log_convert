@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="index.css">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script type="text/javascript" src="index.js"></script>
+  <title>ココフォリアログ変換機</title>
+</head>
+
+<body>
+
+  <div id="top">
+    <h1>ログ変換機</h1>
+    <span>ココフォリアのログをどどんとふ風に変換、微調整機能も今後追加(予定)</span><br>
+    <b>タブ名表記</b>：<input type="checkbox" id="tab" value="0"><br>
+    <button>ダウンロード</button>
+  </div>
+
+  <div id="dropArea" style="
+        " ondragover="dragover(event);
+        " ondrop="drop(event);">
+    この枠内にHTMLファイルをドラッグ＆ドロップしてください。
+    <br><font color="#FF0000"><b>※例外処理は一切実装してないので変な物アップしないでね！ブラウザ止まっても知らないよ！</b></font>
+
+    </br>
+    <font><b>ファイル一覧</b></font>
+    </br>
+    <select id="fileList" size="8">
+
+    </select>
+  </div>
+
+  <div id="leftMenu">
+    <h2>変換前プレビュー</h2>
+    <div id="pre1"></div>
+
+  </div>
+
+  </div>
+
+  <div id="rightMenu">
+    <h2>変換後プレビュー</h2>
+    <div id="pre2"></div>
+
+  </div>
+
+
+
+
+</body>
+
+</html>

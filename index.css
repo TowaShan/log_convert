@@ -1,0 +1,59 @@
+main {
+  height: 90%;
+}
+
+#top h1 {
+  display: block;
+  font-size: 2em;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+}
+
+#top {
+  margin-bottom: 10px;
+}
+#fileList{
+  width:100%;
+  max-size:6;
+}
+
+#leftMenu {
+  background: #DAA;
+  width: 49%;
+  padding-bottom: 30px;
+  float:left;
+}
+
+#rightMenu {
+  background: #ADA;
+  width: 49%;
+  padding-bottom: 30px;
+  float:left;
+}
+
+#dropArea {
+  width: 90%;
+  margin: 5px;
+  border: 1px solid #000000;
+  border-radius: 5px;
+}
+
+#pre1 {
+  width: 98%;
+  margin-left: 1%;
+  height: 300px;
+  overflow: scroll;
+  background: #FFF;
+  border: 1px solid #808080;
+}
+#pre2 {
+  width: 98%;
+  margin-left: 1%;
+  height: 300px;
+  overflow: scroll;
+  background: #FFF;
+  border: 1px solid #808080;
+}
