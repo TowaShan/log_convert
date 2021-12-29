@@ -9,46 +9,39 @@
   <title>ココフォリアログ変換機</title>
 </head>
 
-<body>
+<body style="
+      " ondragover="dragover(event);
+      " ondrop="drop(event);">
 
   <div id="top">
     <h1>ログ変換機</h1>
     <span>ココフォリアのログをどどんとふ風に変換、微調整機能も今後追加(予定)</span><br>
-    <b>タブ名表記</b>：<input type="checkbox" id="tab" value="0"><br>
-    <button>ダウンロード</button>
+    <b>タブ名表記</b>：<input type="checkbox" id="tab" value="0">
+    <b>デフォルト黒文字を濃く</b>：<input type="checkbox" id="defcolor" value="0"><br>
+    <button id="downLoad">ダウンロード</button>
   </div>
 
-  <div id="dropArea" style="
-        " ondragover="dragover(event);
-        " ondrop="drop(event);">
-    この枠内にHTMLファイルをドラッグ＆ドロップしてください。
-    <br><font color="#FF0000"><b>※例外処理は一切実装してないので変な物アップしないでね！ブラウザ止まっても知らないよ！</b></font>
+  <div id="dropArea">
+    この枠内にHTMLファイルをドラッグ＆ドロップ(複数アップロード可、でもダウンロードの時わちゃわちゃするよ、圧縮処理は面倒だからしないよ)
+    <br><b style="color:#F00;">※例外処理は一切実装してないので変な物アップしないでね！ブラウザ止まっても知らないよ！</b>
 
     </br>
-    <font><b>ファイル一覧</b></font>
+    <b>ファイル一覧(クリックで表示切り替え)</b>
     </br>
     <select id="fileList" size="8">
 
     </select>
   </div>
-
   <div id="leftMenu">
     <h2>変換前プレビュー</h2>
     <div id="pre1"></div>
-
   </div>
-
   </div>
 
   <div id="rightMenu">
     <h2>変換後プレビュー</h2>
     <div id="pre2"></div>
-
   </div>
-
-
-
-
 </body>
 
 </html>
