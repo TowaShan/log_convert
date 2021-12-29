@@ -15,15 +15,17 @@
 
   <div id="top">
     <h1>ログ変換機</h1>
-    <span>ココフォリアのログをどどんとふ風に変換、微調整機能も要望があれば追加します</span><br>
+    <span>ココフォリアのログをどどんとふ風に変換、微調整機能も今後追加(予定)</span><br>
     <b>タブ名表記</b>：<input type="checkbox" id="tab" value="0">
     <b>デフォルト黒文字を濃く</b>：<input type="checkbox" id="defcolor" value="0"><br>
+    <!-- <b>行間</b>：<input type="range" id="spacepx" min="0"max="10"value="0"/><span id="spacepoint">0</span>px -->
+    <b>文字サイズ</b>：<input type="range" id="fontpx" min="10"max="30"value="16"/><span id="fontpoint">16</span>px<br>
     <button id="downLoad">ダウンロード</button>
   </div>
 
   <div id="dropArea">
-    この枠内にHTMLファイルをドラッグ＆ドロップ(複数アップロード可、でもダウンロードの時わちゃわちゃするよ、圧縮処理は面倒だから実装してないよ)
-    <br><b style="color:#F00;">※例外処理は一切実装してないので変な物アップしないでね！ブラウザ止まっても知らないよ！</b>
+    この枠内にHTMLファイルをドラッグ＆ドロップ(複数アップロード可、でもダウンロードの時わちゃわちゃするよ、圧縮処理は面倒だからしないよ)
+    <br><b style="color:#F00;">※例外処理は一切実装してないのでココフォリア形式のHTMLログ以外アップしないでね！ブラウザ止まっても知らないよ！</b>
 
     </br>
     <b>ファイル一覧(クリックで表示切り替え)</b>
