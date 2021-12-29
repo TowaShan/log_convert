@@ -127,6 +127,16 @@ function convert(htmlText) {
 
 $(document).ready(function() {
 
+  //行間の変化を検知
+  $("#spacepx").on('input', function() {
+    $("#spacepoint").html($(this).val());
+  });
+  // フォントサイズの変コアを検知
+  $("#fontpx").on('input', function() {
+    $("#fontpoint").html($(this).val());
+    $("font").css("font-size", $(this).val() + "px")
+  });
+
   $("#fileList").change(function() {
     var fileName = $(this).val();
     var selectFile = fileList.find(element => element.name == fileName);
@@ -139,7 +149,23 @@ $(document).ready(function() {
   $("#downLoad").click(function() {
     for (var i = 0; i < fileList.length; i++) {
 
-      var content = "<?xml version='1.0' encoding='UTF-8'?>\n<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>\n<html xmlns='http://www.w3.org/1999/xhtml' lang='ja'>\n  <head>\n<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />\n<title>チャットログ" + fileList[i].tab + "</title>\n</head>\n";
+      var content =
+        "<?xml version='1.0' encoding='UTF-8'?>\n" +
+        "<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>\n" +
+        "<html xmlns='http://www.w3.org/1999/xhtml' lang='ja'>\n" +
+        "<head>\n" +
+        "<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />\n" +
+        "<title>チャットログ" + fileList[i].tab + "</title>\n" + "</head>\n";
+      if ($("#fontpx").val() != "16") {
+        content = content +
+          "<style type='text/css'>\n" +
+          "<!--\n" +
+          "font {font-size:" + $("#fontpx").val() + "px;}\n" +
+          "-->\n" +
+          "</style>\n";
+      } else {
+        content = content + +"</head>\n";
+      }
 
       for (var j = 1; j < fileList[i].aft.length; j++) {
         content = content + fileList[i].aft[j] + "\n";
