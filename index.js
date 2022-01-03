@@ -164,7 +164,7 @@ $(document).ready(function() {
           "-->\n" +
           "</style>\n";
       } else {
-        content = content + +"</head>\n";
+        content = content +"</head>\n";
       }
 
       for (var j = 1; j < fileList[i].aft.length; j++) {
