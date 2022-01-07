@@ -131,10 +131,17 @@ $(document).ready(function() {
   $("#spacepx").on('input', function() {
     $("#spacepoint").html($(this).val());
   });
-  // フォントサイズの変コアを検知
+  // フォントサイズの変更を検知
   $("#fontpx").on('input', function() {
     $("#fontpoint").html($(this).val());
     $("font").css("font-size", $(this).val() + "px")
+  });
+
+  // フォントサイズの変更を検知
+  $("#margin").on('input', function() {
+    var margin = Number($(this).val()) * 10;
+    $("#marginpoint").html(margin + "%");
+    $("font").css("line-height", margin + "%")
   });
 
   $("#fileList").change(function() {
@@ -147,6 +154,7 @@ $(document).ready(function() {
 
 
   $("#downLoad").click(function() {
+    var margin = Number($("#margin").val()) * 10;
     for (var i = 0; i < fileList.length; i++) {
 
       var content =
@@ -155,17 +163,16 @@ $(document).ready(function() {
         "<html xmlns='http://www.w3.org/1999/xhtml' lang='ja'>\n" +
         "<head>\n" +
         "<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />\n" +
-        "<title>チャットログ" + fileList[i].tab + "</title>\n" + "</head>\n";
-      if ($("#fontpx").val() != "16") {
-        content = content +
-          "<style type='text/css'>\n" +
-          "<!--\n" +
-          "font {font-size:" + $("#fontpx").val() + "px;}\n" +
-          "-->\n" +
-          "</style>\n";
-      } else {
-        content = content +"</head>\n";
-      }
+        "<title>チャットログ" + fileList[i].tab + "</title>\n";
+
+      content = content + "<style type='text/css'>\n" + "<!--\n" +
+        "font {\n" +
+        "font-size:" + $("#fontpx").val() + "px;\n" +
+        "line-height:" + margin + "%;\n" +
+        "}\n" +
+        "-->\n" +
+        "</style>\n";
+      content = content + "</head>\n";
 
       for (var j = 1; j < fileList[i].aft.length; j++) {
         content = content + fileList[i].aft[j] + "\n";
