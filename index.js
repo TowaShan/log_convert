@@ -140,7 +140,8 @@ $(document).ready(function() {
   // フォントサイズの変更を検知
   $("#margin").on('input', function() {
     var margin = Number($(this).val()) * 10;
-    $("#marginpoint").html(margin + "%");
+    var view = margin - 50;
+    $("#marginpoint").html( view + "%");
     $("font").css("line-height", margin + "%")
   });
 
